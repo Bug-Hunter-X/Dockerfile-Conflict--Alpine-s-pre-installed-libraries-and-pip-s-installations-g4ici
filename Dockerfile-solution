@@ -1,0 +1,8 @@
+FROM alpine:latest
+RUN apk add --no-cache python3 make g++ linux-headers
+RUN python3 -m venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+COPY app.py .
+CMD ["python3", "app.py"]
